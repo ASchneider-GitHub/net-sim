@@ -1,0 +1,60 @@
+networks:
+  sim-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+          gateway: 172.30.0.1
+services:
+  syslog-sim-device:
+    build:
+      context: .
+      dockerfile: net-sim.dockerfile
+    image: net-sim-devices
+    container_name: syslog-sim-device
+    networks:
+      sim-net:
+        ipv4_address: 172.30.0.2
+    volumes:
+      - ./scripts/syslog_exporter.sh:/usr/local/bin/syslog_exporter.sh:ro
+    command: bash /usr/local/bin/syslog_exporter.sh
+    restart: unless-stopped
+  snmpv2-sim-device:
+    build:
+      context: .
+      dockerfile: net-sim.dockerfile
+    image: net-sim-devices
+    container_name: snmpv2-sim-device
+    networks:
+      sim-net:
+        ipv4_address: 172.30.0.3
+    volumes:
+      - ./configs/snmpd-v2.conf:/etc/snmp/snmpd.conf:ro
+    command: snmpd -f -Lo
+    restart: unless-stopped
+  snmpv3-sim-device:
+    build:
+      context: .
+      dockerfile: net-sim.dockerfile
+    image: net-sim-devices
+    container_name: snmpv3-sim-device
+    networks:
+      sim-net:
+        ipv4_address: 172.30.0.4
+    volumes:
+      - ./configs/snmpd-v3.conf:/etc/snmp/snmpd.conf:ro
+    command: snmpd -f -Lo
+    restart: unless-stopped
+  netflow-sim-device:
+    build:
+      context: .
+      dockerfile: net-sim.dockerfile
+    image: net-sim-devices
+    container_name: netflow-sim-device
+    networks:
+      sim-net:
+        ipv4_address: 172.30.0.5
+    volumes:
+      - ./scripts/netflow_generator.sh:/usr/local/bin/netflow_generator.sh:ro
+    command: bash /usr/local/bin/netflow_generator.sh
+    restart: unless-stopped

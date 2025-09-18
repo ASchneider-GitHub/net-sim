@@ -1,0 +1,48 @@
+devices:
+  syslog-sim-device__172.30.0.2:
+    device_name: syslog-sim-device
+    device_ip: 172.30.0.2
+    ping_only: true
+    user_tags:
+      environment: sandbox
+      runtime: docker
+  netflow-sim-device__172.30.0.5:
+    device_name: netflow-sim-device
+    device_ip: 172.30.0.5
+    flow_only: true
+    user_tags:
+      environment: sandbox
+      runtime: docker
+trap:
+  listen: 127.0.0.1:1620
+  community: hello
+  version: ""
+  transport: ""
+discovery:
+  cidrs:
+  - 172.30.0.3/32 #snmpv2-sim-device
+  - 172.30.0.4/32 #snmpv3-sim-device
+  debug: false
+  ports:
+  - 161
+  default_communities:
+  - newrelic-net-sim
+  default_v3:
+    user_name: newrelic-user
+    authentication_protocol: SHA
+    authentication_passphrase: newrelic-net-sim
+    privacy_protocol: AES
+    privacy_passphrase: newrelic-net-sim
+  add_devices: true
+  add_mibs: true
+  threads: 4
+  replace_devices: true
+global:
+  poll_time_sec: 60
+  drop_if_outside_poll: false
+  mib_profile_dir: /etc/ktranslate/profiles
+  mibs_db: /etc/ktranslate/mibs.db
+  mibs_enabled:
+  - IF-MIB
+  timeout_ms: 3000
+  retries: 0
