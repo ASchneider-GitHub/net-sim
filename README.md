@@ -26,7 +26,7 @@ All containers run inside the `sim-net` bridge network:
 ### Building the image
 *You only need to do this part once unless you modify `net-sim.dockerfile`*
 ```bash
-docker compose build
+docker compose build --no-cache
 ```
 ### Start up containers
 ```bash
