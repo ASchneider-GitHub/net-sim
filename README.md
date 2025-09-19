@@ -75,7 +75,8 @@ Unless changed via the files in `./configs`, these are the default credentials f
     - Authentication level: `authPriv`
 
 ## Teardown process
-Whenever you stop/start `Ktranslate` containers, it's best to do `docker compose down` & `docker compose up -d`. This will refresh the scripts and allow them to connect to the Ktranslate sinks correctly. If you wnat to completely rip out the installation, you can use:
+Whenever you stop/start `Ktranslate` containers, it's best to do `docker compose down` & `docker compose up -d`. This will refresh the scripts and allow them to connect to the Ktranslate sinks correctly. If you want to rip out the installation completely, you can use:
 ```
 docker stop $(docker ps -q -f name=ktranslate) && docker rm $(docker ps -aq -f name=ktranslate) && docker compose down
 ```
+This disconnects the Ktranslate containers from the `net-sim_sim-net` network, allowing `docker compose down` to correctly purge the environment.
