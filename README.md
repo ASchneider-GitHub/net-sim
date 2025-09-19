@@ -53,7 +53,8 @@ Any time you make changes, you will need to run `docker compose down` and then `
 Included in the repo is the `./ktranslate/` directory. Inside are the following:
 - A pre-filled `snmp-base.yaml` configuration file
 - A backup of the configuration file (`snmp-base.yaml.bak`) in case a clean copy is needed
-- Scripts that can launch each of the three Ktranslate container types. Run with `./launch_ktranslate_[netflow|snmp|syslog].sh`. You ***must*** `cd` into the `./ktranslate/` directory before you do, otherwise the configuration file will not be picked up correctly.
+- Scripts that can launch each of the three Ktranslate container types. Run with `./launch_ktranslate_[netflow|snmp|syslog].sh`. You ***must*** `cd` into the `./ktranslate/` directory before proceeding, otherwise the configuration file will not be picked up correctly.
+  - The simulation containers all run on a Docker bridge network. Launch your ktranslate containers using the provided scripts to avoid connection issues.
 
 ***Prior to running the launch scripts, you will need to set an environment variable with your New Relic account ID and ingest license key***
 ```bash
