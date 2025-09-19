@@ -43,7 +43,7 @@ docker compose down
 - `./scripts/netflow_generator.sh` creates flow packets by setting up the `softflowd` exporter and then using `curl` to repeatedly hit New Relic's endpoints
   - `VERSION` can be used to change the Netflow version
   - `EXPORTPORT` changes which port netflow packets are exported over
-  - `INTERVAL` adjusts the frequency of the `hping` loop (ping/sec)
+  - `INTERVAL` adjusts the frequency of the `curl` loop (reqs/sec)
 - `./scripts/syslog_exporter.sh` continuously exports randomized packets that are compliant with RFC 5425. It's not recommended to change the script's formatting.
   - `EXPORTPORT` changes which port syslog packets are exported over
 
