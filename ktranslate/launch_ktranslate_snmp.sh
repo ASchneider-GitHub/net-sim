@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
+if [[ -z "$NET_SIM_LICENSE" ]]; then
+  echo "Env var NET_SIM_LICENSE is not set"
+  exit 1
+fi
+
+if [[ -z "$NET_SIM_ACCOUNT" ]]; then
+  echo "Env var NET_SIM_ACCOUNT is not set"
+  exit 1
+fi
+
 echo "Launching SNMP container"
 
-docker run -d --name ktranslate-snmp-collector --restart unless-stopped --pull=always -p 162:1620/udp \
+docker run -d --name ktranslate-snmp-collector --restart unless-stopped --network net-sim_sim-net --pull=always -p 162:1620/udp \
 -v `pwd`/snmp-base.yaml:/snmp-base.yaml \
 -e NEW_RELIC_API_KEY=$NET_SIM_LICENSE \
 kentik/ktranslate:v2 \

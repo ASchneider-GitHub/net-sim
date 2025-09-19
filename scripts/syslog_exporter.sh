@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOST="$(ip route | awk '/default/ { print $3 }')"
+HOST="ktranslate-syslog-collector"
 EXPORTPORT=514
 FACILITY=1
 SEVERITIES="0 1 2 3 4 5 6 7"

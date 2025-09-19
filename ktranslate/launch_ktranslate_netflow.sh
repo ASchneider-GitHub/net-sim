@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
+if [[ -z "$NET_SIM_LICENSE" ]]; then
+  echo "Env var NET_SIM_LICENSE is not set"
+  exit 1
+fi
+
+if [[ -z "$NET_SIM_ACCOUNT" ]]; then
+  echo "Env var NET_SIM_ACCOUNT is not set"
+  exit 1
+fi
+
 echo "Launching netflow container"
 
+# If you change the container name, you also need to update it in scripts/netflow_generator.sh
 docker run -d --name ktranslate-netflow-collector --restart unless-stopped --pull=always --net=host \
 -v `pwd`/snmp-base.yaml:/snmp-base.yaml \
 -e NEW_RELIC_API_KEY=$NET_SIM_LICENSE \

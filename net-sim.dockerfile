@@ -6,7 +6,8 @@ RUN apt update && \
         netcat-traditional \
         bash \
         coreutils \
+        tcpdump \
         snmpd \
         softflowd \
-        hping3 && \
+        curl && \
     rm -rf /var/lib/apt/lists/*
