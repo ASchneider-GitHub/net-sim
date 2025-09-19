@@ -40,7 +40,7 @@ docker compose down
 
 ## Customization
 - `./configs/` holds the base v2 and v3 SNMP configuration files. The user credentials can be adjusted, as well as the authentication/encryption settings and access-level.
-- `./scripts/netflow_generator.sh` creates flow packets by setting up the `softflowd` exporter and then using `hping3` to hit the Docker bridge gateway with a mix of UDP and TCP packets on an array of ports.
+- `./scripts/netflow_generator.sh` creates flow packets by setting up the `softflowd` exporter and then using `curl` to repeatedly hit New Relic's endpoints
   - `VERSION` can be used to change the Netflow version
   - `EXPORTPORT` changes which port netflow packets are exported over
   - `INTERVAL` adjusts the frequency of the `hping` loop (ping/sec)
