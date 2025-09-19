@@ -1,6 +1,6 @@
 # Network Simulation Environment
 
-Deploy a Docker-based fleet of containers for simulating network devices. One container exports **Syslog** messages, one generates and exports **NetFlow (v5 or v9)** traffic (*no internet access required*), and two allow for **SNMP (v2 and v3)** polling. Made for use with Ktranslate to test it's various functions.
+Deploy a Docker-based fleet of containers for simulating network devices. One container exports **Syslog** messages, one generates and exports **NetFlow (v5 or v9)** traffic (*[network whitelist requirements](https://docs.newrelic.com/install/npm/?region=us&installation=docker)*), and two allow for **SNMP (v2 and v3)** polling. Made for use with Ktranslate to test it's various functions.
 
 ## Requirements
 
